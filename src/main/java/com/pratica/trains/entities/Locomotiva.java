@@ -27,17 +27,17 @@ public class Locomotiva {
 	private Double kilometragem;
 	private Integer ano;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Maquinista maquinista;
 	
-	@OneToMany(mappedBy = "locomotiva")
+	@OneToMany(mappedBy = "locomotiva", cascade = CascadeType.ALL)
 	private Set<Vagoes>vagoes = new HashSet<>();
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "itinerario_id")
 	private Itinerario itinerario;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "tb_locomotiva_estacao", 
 	joinColumns = @JoinColumn(name = "locomotiva_id"), 
 	inverseJoinColumns = @JoinColumn(name = "estacao_id"))
@@ -46,14 +46,13 @@ public class Locomotiva {
 	public Locomotiva() {
 	}
 
-	public Locomotiva(Long id, String nome, String modelo, Double kilometragem, Integer ano, Maquinista maquinista,
+	public Locomotiva(Long id, String nome, String modelo, Double kilometragem, Integer ano,
 			Set<Vagoes> vagoes, Itinerario itinerario, Estacao estaçao) {
 		this.id = id;
 		this.nome = nome;
 		this.modelo = modelo;
 		this.kilometragem = kilometragem;
 		this.ano = ano;
-		this.maquinista = maquinista;
 		this.vagoes = vagoes;
 		this.itinerario = itinerario;
 		this.estacao = estacao;

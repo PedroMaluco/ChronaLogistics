@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pratica.trains.dto.LocomotivaDTO;
+import com.pratica.trains.dto.LocomotivaMinDTO;
 import com.pratica.trains.services.LocomotivaService;
 
 import jakarta.validation.Valid;
@@ -33,15 +35,15 @@ public class LocomotivaController {
 		return ResponseEntity.ok(dto);
 	}
 	@GetMapping
-	public ResponseEntity<List<LocomotivaDTO>> findAllLoco(){
-		List<LocomotivaDTO> dto = locoSer.findAllLoco();
+	public ResponseEntity<List<LocomotivaMinDTO>> findAllLoco(@RequestParam(name = "nome", defaultValue = "") String nome){
+		List<LocomotivaMinDTO> dto = locoSer.findAllLoco(nome);
 		return ResponseEntity.ok(dto);
 	}
 	@PostMapping(value = "/Locomotiva")
-	public ResponseEntity<LocomotivaDTO> addLoco(@Valid @RequestBody LocomotivaDTO dto) {
-		dto = locoSer.addLoco(dto);
+	public ResponseEntity<LocomotivaMinDTO> addLoco(@Valid @RequestBody LocomotivaDTO dto) {
+		LocomotivaMinDTO result = locoSer.addLoco(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto);
+		return ResponseEntity.created(uri).body(result);
 	}
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<LocomotivaDTO> updateLoco(@PathVariable Long id, @Valid @RequestBody LocomotivaDTO dto) {
@@ -53,6 +55,11 @@ public class LocomotivaController {
 	public ResponseEntity<Void> deleteLoco(@PathVariable Long id) {
 		locoSer.deleteLoco(id);
 		return ResponseEntity.noContent().build();
+	}
+	@PutMapping(value = "/{idMaqui}/{idLoco}")
+	public ResponseEntity<LocomotivaDTO> setMaquinista(@PathVariable Long idMaqui, @PathVariable Long idLoco){
+		LocomotivaDTO dto = locoSer.setMaqui(idMaqui, idLoco);
+		return ResponseEntity.ok(dto);
 	}
 	
 }

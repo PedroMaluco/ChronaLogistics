@@ -2,6 +2,7 @@ package com.pratica.trains.controllers.handlers;
 
 import java.time.Instant;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,7 +14,7 @@ import com.pratica.trains.dto.CustomException;
 import com.pratica.trains.dto.ValidationError;
 import com.pratica.trains.services.exceptions.DatabaseException;
 import com.pratica.trains.services.exceptions.InvalidAcessException;
-import com.pratica.trains.services.exceptions.LocoNotFoundException;
+import com.pratica.trains.services.exceptions.ObjectNotFoundException;
 import com.pratica.trains.services.exceptions.UnsavedObjException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,8 +22,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class CustomExceptionHandler {
 	
-	@ExceptionHandler(LocoNotFoundException.class)
-	public ResponseEntity<CustomException>LocoNotFound(LocoNotFoundException e, HttpServletRequest request){
+	@ExceptionHandler(ObjectNotFoundException.class)
+	public ResponseEntity<CustomException>LocoNotFound(ObjectNotFoundException e, HttpServletRequest request){
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		CustomException err = new CustomException(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);	
@@ -57,7 +58,13 @@ public class CustomExceptionHandler {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
 		return ResponseEntity.status(status).body(err);
-		
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<CustomException>LocoNotFound(DataIntegrityViolationException e, HttpServletRequest request){
+		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+		CustomException err = new CustomException(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(err);	
 	}
 	
 	

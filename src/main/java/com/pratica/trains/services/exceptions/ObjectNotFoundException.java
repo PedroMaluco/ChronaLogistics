@@ -1,10 +1,10 @@
 package com.pratica.trains.services.exceptions;
 
-public class LocoNotFoundException extends RuntimeException {
+public class ObjectNotFoundException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public LocoNotFoundException(String msg) {
+	public ObjectNotFoundException(String msg) {
 		super(msg);
 	}
 
