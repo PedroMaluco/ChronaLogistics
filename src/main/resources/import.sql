@@ -3,17 +3,6 @@ INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Da Silva', 
 INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Severo', 22, 2500.00, 'saveiro@outlook.com', 'Charlie');
 INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Padilha', 25, 2850.00, 'padilha@gmail.com', 'Delta');
 
-INSERT INTO tb_role(authority) VALUES ('Engenheiro-chefe');
-INSERT INTO tb_role(authority) VALUES ('Administrador');
-INSERT INTO tb_role(authority) VALUES ('Operador');
-
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (1, 2);
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (1, 3);
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (2, 1);
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (2, 2);
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (3, 3);
-INSERT INTO tb_maquinista_role(maquinista_id, role_id) VALUES (4, 3);
-
 INSERT INTO tb_itinerario(inicio, fim) VALUES (TIMESTAMP WITH TIME ZONE '2025-05-07T13:00:00Z', TIMESTAMP WITH TIME ZONE '2025-05-07T18:00:00Z');
 INSERT INTO tb_itinerario(inicio, fim) VALUES (TIMESTAMP WITH TIME ZONE '2025-05-09T09:00:00Z', TIMESTAMP WITH TIME ZONE '2025-05-09T15:00:00Z');
 

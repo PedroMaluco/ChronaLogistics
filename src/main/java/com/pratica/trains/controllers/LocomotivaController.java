@@ -39,7 +39,7 @@ public class LocomotivaController {
 		List<LocomotivaMinDTO> dto = locoSer.findAllLoco(nome);
 		return ResponseEntity.ok(dto);
 	}
-	@PostMapping(value = "/Locomotiva")
+	@PostMapping
 	public ResponseEntity<LocomotivaMinDTO> addLoco(@Valid @RequestBody LocomotivaDTO dto) {
 		LocomotivaMinDTO result = locoSer.addLoco(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();

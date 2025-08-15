@@ -4,22 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pratica.trains.dto.MaquinistaDTO;
 import com.pratica.trains.entities.Maquinista;
-import com.pratica.trains.entities.Role;
-import com.pratica.trains.projections.MaquinistaProjection;
 import com.pratica.trains.repositories.MaquinistaRepository;
 import com.pratica.trains.services.exceptions.DatabaseException;
 import com.pratica.trains.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class MaquinistaService implements UserDetailsService {
+public class MaquinistaService {
 
 	@Autowired
 	private MaquinistaRepository maquiRepo;
@@ -65,29 +60,6 @@ public class MaquinistaService implements UserDetailsService {
 			throw new DatabaseException("Falha de integridade referencial");		
 			}
 	}
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return null;
-	}
-		/**
-		List<MaquinistaProjection> result = maquiRepo.searchMaquinistaByEmail(username);
-		if(result.size()==0) {
-			throw new UsernameNotFoundException("User not found");
-		}
-		else {
-			
-		
-			Maquinista maqui = new Maquinista();
-			maqui.setEmail(username);
-			maqui.setSenha(result.get(0).getSenha());
-			for (MaquinistaProjection proj : result) {
-			maqui.addRole(new Role(proj.getroleId(), proj.getAuthority()));
-				}
-					return maqui;
-		}
-	}
-**/
 	
 	public void copyFromDTO(Maquinista maqui, MaquinistaDTO dto) {
 		maqui.setNome(dto.getNome());
