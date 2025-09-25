@@ -26,7 +26,7 @@ public class Itinerario {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDateTime fim;
 	
-	@OneToOne(mappedBy = "itinerario")
+	@OneToOne(mappedBy = "itinerario", cascade = CascadeType.ALL)
 	private Locomotiva locomotiva;
 	
 	@ManyToMany(mappedBy = "itinerarios")

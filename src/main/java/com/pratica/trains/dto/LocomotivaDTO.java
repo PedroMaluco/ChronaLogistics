@@ -1,6 +1,10 @@
 package com.pratica.trains.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.pratica.trains.entities.Locomotiva;
+import com.pratica.trains.entities.Vagoes;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +28,8 @@ public class LocomotivaDTO {
 	
 	private MaquinistaDTO maquinista;
 	
+	private Set<VagaoDTO>vagoes = new HashSet<>();
+	
 	public LocomotivaDTO() {
 	}
 
@@ -41,6 +47,10 @@ public class LocomotivaDTO {
 		modelo = locomotiva.getModelo();
 		kilometragem = locomotiva.getKilometragem();
 		ano = locomotiva.getAno();
+		for (Vagoes vag : locomotiva.getVagoes()) {
+			addVagao(new VagaoDTO(vag));
+		}
+		vagoes = getVagoes();
 		maquinista = new MaquinistaDTO(locomotiva.getMaquinista());	
 	}
 	
@@ -73,5 +83,14 @@ public class LocomotivaDTO {
 	public void setMaquinista(MaquinistaDTO maquinista) {
 		this.maquinista = maquinista;
 	}
+	
+	public void addVagao(VagaoDTO vagao) {
+		vagoes.add(vagao);
+	}
+
+	public Set<VagaoDTO> getVagoes() {
+		return vagoes;
+	}
+	
 	
 }
