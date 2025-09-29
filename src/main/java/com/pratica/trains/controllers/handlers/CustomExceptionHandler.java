@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class CustomExceptionHandler {
 	
 	@ExceptionHandler(ObjectNotFoundException.class)
-	public ResponseEntity<CustomException>LocoNotFound(ObjectNotFoundException e, HttpServletRequest request){
+	public ResponseEntity<CustomException>ObjectNotFound(ObjectNotFoundException e, HttpServletRequest request){
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		CustomException err = new CustomException(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);	

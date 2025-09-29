@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_vagoes")
-public class Vagoes {
+public class Vagao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class Vagoes {
 	@JoinColumn(name = "locomotiva_id")
 	private Locomotiva locomotiva; 
 	
-	public Vagoes() {
+	public Vagao() {
 	}
 
-	public Vagoes(Long id, Double peso, Integer ano, ModeloVagao modelo, Locomotiva locomotiva) {
+	public Vagao(Long id, Double peso, Integer ano, ModeloVagao modelo, Locomotiva locomotiva) {
 		this.id = id;
 		this.peso = peso;
 		this.ano = ano;

@@ -31,7 +31,7 @@ public class Locomotiva {
 	private Maquinista maquinista;
 	
 	@OneToMany(mappedBy = "locomotiva", cascade = CascadeType.ALL)
-	private Set<Vagoes>vagoes = new HashSet<>();
+	private Set<Vagao>vagoes = new HashSet<>();
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "itinerario_id")
@@ -47,7 +47,7 @@ public class Locomotiva {
 	}
 
 	public Locomotiva(Long id, String nome, String modelo, Double kilometragem, Integer ano,
-			Set<Vagoes> vagoes, Itinerario itinerario, Estacao estaçao) {
+			Set<Vagao> vagoes, Itinerario itinerario, Estacao estaçao) {
 		this.id = id;
 		this.nome = nome;
 		this.modelo = modelo;
@@ -106,7 +106,7 @@ public class Locomotiva {
 		this.maquinista = maquinista;
 	}
 
-	public Set<Vagoes> getVagoes() {
+	public Set<Vagao> getVagoes() {
 		return vagoes;
 	}
 

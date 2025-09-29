@@ -1,7 +1,7 @@
 package com.pratica.trains.dto;
 
 import com.pratica.trains.entities.ModeloVagao;
-import com.pratica.trains.entities.Vagoes;
+import com.pratica.trains.entities.Vagao;
 
 public class VagaoDTO {
 	
@@ -20,7 +20,7 @@ public class VagaoDTO {
 		this.modelo = modelo;
 	}
 
-	public VagaoDTO(Vagoes entity) {
+	public VagaoDTO(Vagao entity) {
 		id = entity.getId();
 		peso = entity.getPeso();
 		ano = entity.getAno();

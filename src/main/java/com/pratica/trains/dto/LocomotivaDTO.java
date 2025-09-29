@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.pratica.trains.entities.Locomotiva;
-import com.pratica.trains.entities.Vagoes;
+import com.pratica.trains.entities.Vagao;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -47,7 +47,7 @@ public class LocomotivaDTO {
 		modelo = locomotiva.getModelo();
 		kilometragem = locomotiva.getKilometragem();
 		ano = locomotiva.getAno();
-		for (Vagoes vag : locomotiva.getVagoes()) {
+		for (Vagao vag : locomotiva.getVagoes()) {
 			addVagao(new VagaoDTO(vag));
 		}
 		vagoes = getVagoes();
