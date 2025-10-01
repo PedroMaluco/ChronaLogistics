@@ -12,8 +12,10 @@ import com.pratica.trains.dto.LocomotivaDTO;
 import com.pratica.trains.dto.LocomotivaMinDTO;
 import com.pratica.trains.entities.Locomotiva;
 import com.pratica.trains.entities.Maquinista;
+import com.pratica.trains.entities.Vagao;
 import com.pratica.trains.repositories.LocomotivaRepository;
 import com.pratica.trains.repositories.MaquinistaRepository;
+import com.pratica.trains.repositories.VagaoRepository;
 import com.pratica.trains.services.exceptions.DatabaseException;
 import com.pratica.trains.services.exceptions.ObjectNotFoundException;
 
@@ -25,6 +27,9 @@ public class LocomotivaService {
 	
 	@Autowired
 	private MaquinistaRepository maquiRepo;
+	
+	@Autowired
+	private VagaoRepository vagRepo;
 	
 	
 	@Transactional(readOnly = true)
@@ -71,15 +76,22 @@ public class LocomotivaService {
 		}
 	
 	@Transactional
-		public LocomotivaDTO setMaqui(Long idMaqui, Long idLoco) {
-			Locomotiva loco = locoRepo.getReferenceById(idLoco);
-			Maquinista maqui = maquiRepo.getReferenceById(idMaqui);
-			loco.setMaquinista(maqui);
-			locoRepo.save(loco);
-			return new LocomotivaDTO(loco);
-		}
-		
+	public LocomotivaDTO setMaqui(Long idMaqui, Long idLoco) {
+		Locomotiva loco = locoRepo.getReferenceById(idLoco);
+		Maquinista maqui = maquiRepo.getReferenceById(idMaqui);
+		loco.setMaquinista(maqui);
+		locoRepo.save(loco);
+		return new LocomotivaDTO(loco);
+	}
 	
+	@Transactional
+	public LocomotivaDTO addVagaoToLocomotiva(Long idVagao, Long idLoco) {
+		Vagao vagao = vagRepo.getReferenceById(idVagao);
+		Locomotiva loco = locoRepo.getReferenceById(idLoco);
+		loco.addVagao(vagao);
+		locoRepo.save(loco);
+		return new LocomotivaDTO(loco);
+	}
 
 	private void copiarDtoParaLoco(LocomotivaDTO dto, Locomotiva loco) {
 		loco.setAno(dto.getAno());

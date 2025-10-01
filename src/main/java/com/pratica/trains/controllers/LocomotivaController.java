@@ -62,4 +62,10 @@ public class LocomotivaController {
 		return ResponseEntity.ok(dto);
 	}
 	
+	@PutMapping(value = "/addVag/{idVagao}/{idLoco}")
+	public ResponseEntity<LocomotivaDTO> addVagaoToLocomotiva(@PathVariable Long idVagao, @PathVariable Long idLoco){
+		LocomotivaDTO dto = locoSer.addVagaoToLocomotiva(idVagao, idLoco);
+		return ResponseEntity.ok(dto);
+	}
+	
 }

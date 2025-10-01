@@ -11,11 +11,11 @@ INSERT INTO tb_locomotiva(nome, modelo, kilometragem, ano, maquinista_id, itiner
 INSERT INTO tb_locomotiva(nome, modelo, kilometragem, ano, maquinista_id, itinerario_id) VALUES ('Sun Shine', 'Steam-Engine', 770.000, 1997, 2, null)
 
 
-INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (2500, 2002, 1, 2);
+INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (2500, 2002, 0, 2);
 INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (3500, 2012, 1, 2);
-INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (4200, 2007, 0, 2);
+INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (4200, 2007, 2, 2);
 INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (5500, 2009, 1, 1);
-INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (4000, 2011, 0, 1);
+INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (4000, 2011, 2, 1);
 INSERT INTO tb_vagoes(peso, ano, modelo, locomotiva_id) VALUES (3800, 2020, 0, 1);
 
 INSERT INTO tb_estacao(nome) VALUES ('Cachoeira');

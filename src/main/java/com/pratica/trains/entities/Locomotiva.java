@@ -126,6 +126,10 @@ public class Locomotiva {
 		this.estacao = estacao;
 	}
 	
+	public void addVagao(Vagao vagao) {
+		vagoes.add(vagao);
+	}
+	
 	
 	
 	
