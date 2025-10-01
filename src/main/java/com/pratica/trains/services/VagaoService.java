@@ -33,6 +33,24 @@ public class VagaoService {
 		return new VagaoDTO(vagao);
 	}
 	
+	@Transactional
+	public VagaoDTO updateVagao(VagaoDTO dto, Long id) {
+		Vagao vagao = repository.getReferenceById(id);
+		vagao.setAno(dto.getAno());
+		vagao.setModelo(dto.getModelo());
+		vagao.setPeso(dto.getPeso());
+		vagao = repository.save(vagao);
+		
+		return new VagaoDTO(vagao);
+	}
+	
+	@Transactional
+	public void deleteVagao(Long id) {
+		repository.deleteById(id);
+	}
+	
+	
+	
 	
 
 }
