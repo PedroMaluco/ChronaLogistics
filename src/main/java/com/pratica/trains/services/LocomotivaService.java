@@ -68,7 +68,7 @@ public class LocomotivaService {
 			throw new ObjectNotFoundException("Locomotiva não encontrada");
 			}
 		try {
-			locoRepo.deleteById(id);;
+			locoRepo.deleteById(id);
 			}
 		catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Falha de integridade referencial");		
@@ -77,8 +77,8 @@ public class LocomotivaService {
 	
 	@Transactional
 	public LocomotivaDTO setMaqui(Long idMaqui, Long idLoco) {
-		Locomotiva loco = locoRepo.getReferenceById(idLoco);
-		Maquinista maqui = maquiRepo.getReferenceById(idMaqui);
+		Locomotiva loco = locoRepo.findById(idLoco).orElseThrow(() -> new ObjectNotFoundException("Locomotiva não encontrada"));
+		Maquinista maqui = maquiRepo.findById(idMaqui).orElseThrow(() -> new ObjectNotFoundException("Maquinista não encontrado"));
 		loco.setMaquinista(maqui);
 		locoRepo.save(loco);
 		return new LocomotivaDTO(loco);
@@ -86,8 +86,8 @@ public class LocomotivaService {
 	
 	@Transactional
 	public LocomotivaDTO addVagaoToLocomotiva(Long idVagao, Long idLoco) {
-		Vagao vagao = vagRepo.getReferenceById(idVagao);
-		Locomotiva loco = locoRepo.getReferenceById(idLoco);
+		Vagao vagao = vagRepo.findById(idVagao).orElseThrow(() -> new ObjectNotFoundException("Vagão não encontrado"));
+		Locomotiva loco = locoRepo.findById(idLoco).orElseThrow(() -> new ObjectNotFoundException("Locomotiva não encontrada"));
 		loco.addVagao(vagao);
 		locoRepo.save(loco);
 		return new LocomotivaDTO(loco);

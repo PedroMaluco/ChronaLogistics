@@ -1,12 +1,15 @@
 package com.pratica.trains.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pratica.trains.dto.VagaoDTO;
 import com.pratica.trains.entities.Vagao;
 import com.pratica.trains.repositories.VagaoRepository;
+import com.pratica.trains.services.exceptions.DatabaseException;
 import com.pratica.trains.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -44,13 +47,17 @@ public class VagaoService {
 		return new VagaoDTO(vagao);
 	}
 	
-	@Transactional
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void deleteVagao(Long id) {
-		repository.deleteById(id);
-	}
+		if(!repository.existsById(id)) {
+			throw new ObjectNotFoundException("Locomotiva não encontrada");
+			}
+		try {
+			repository.deleteById(id);;
+			}
+		catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Falha de integridade referencial");		
+			}
+		}
 	
-	
-	
-	
-
 }
