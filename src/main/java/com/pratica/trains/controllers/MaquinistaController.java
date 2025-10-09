@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.pratica.trains.dto.MaquinistaDTO;
 import com.pratica.trains.services.MaquinistaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/personel")
 public class MaquinistaController {
@@ -38,14 +40,14 @@ public class MaquinistaController {
 	}
 	
 	@PostMapping
-	private ResponseEntity<MaquinistaDTO> addMaqui(@RequestBody MaquinistaDTO dto) {
+	private ResponseEntity<MaquinistaDTO> addMaqui(@Valid @RequestBody MaquinistaDTO dto) {
 		MaquinistaDTO result = maquiServ.addMaqui(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(result);
 	}
 	
 	@PutMapping(value = "/{id}")
-	private ResponseEntity<MaquinistaDTO> updateMaqui(@RequestBody MaquinistaDTO dto, @PathVariable Long id) {
+	private ResponseEntity<MaquinistaDTO> updateMaqui(@Valid @RequestBody MaquinistaDTO dto, @PathVariable Long id) {
 		MaquinistaDTO result = maquiServ.updateMaqui(dto, id);
 		return ResponseEntity.ok(result);
 	}

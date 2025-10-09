@@ -38,7 +38,7 @@ public class VagaoService {
 	
 	@Transactional
 	public VagaoDTO updateVagao(VagaoDTO dto, Long id) {
-		Vagao vagao = repository.getReferenceById(id);
+		Vagao vagao = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Vagão não encontrado"));
 		vagao.setAno(dto.getAno());
 		vagao.setModelo(dto.getModelo());
 		vagao.setPeso(dto.getPeso());

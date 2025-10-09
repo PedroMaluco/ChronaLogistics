@@ -3,10 +3,17 @@ package com.pratica.trains.dto;
 import com.pratica.trains.entities.ModeloVagao;
 import com.pratica.trains.entities.Vagao;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class VagaoDTO {
 	
 	private Long id;
+	@NotNull(message = "Informe o peso do vagão")
+	@Positive(message = "informe um valor válido")
 	private Double peso;
+	@NotNull(message = "Informe o ano de produção do vagão")
+	@Positive(message = "informe um valor válido")
 	private Integer ano;
 	private ModeloVagao modelo;
 	

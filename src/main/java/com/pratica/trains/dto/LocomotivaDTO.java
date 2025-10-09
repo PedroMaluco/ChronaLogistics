@@ -20,9 +20,9 @@ public class LocomotivaDTO {
 	private String nome;
 	@NotBlank(message = "O modelo deve ser especificado")
 	private String modelo;
-	@Positive(message = "Valor inválido")
+	@Positive(message = "informe um valor válido")
 	private Double kilometragem;
-	@Positive(message = "Ano inválido")
+	@Positive(message = "informe um valor válido")
 	@Min(value = 1950, message = "Insira um ano à partir de 1950")
 	private Integer ano;
 	

@@ -1,13 +1,28 @@
 package com.pratica.trains.dto;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import com.pratica.trains.entities.Maquinista;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class MaquinistaDTO {
 	
 	private Long id;
+	
+	@NotBlank(message = "Campo obrigatório")
+	@Size(min = 3, max = 30, message = "Escolha um tamanho adequado de nome")
 	private String nome;
+	@NotNull(message = "Campo obrigatório")
+	@Positive(message = "informe uma idade válida")
 	private Integer idade;
+	@NotNull(message = "Informe um valor para este campo")
+	@Positive(message = "O valor do soldo deve ser positivo")
 	private Double soldo;
+	@NotBlank(message = "Campo obrigatório")
 	private String email;
 	
 	public MaquinistaDTO() {
