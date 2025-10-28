@@ -1,7 +1,12 @@
 package com.pratica.trains.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,10 +26,15 @@ public class Maquinista {
 	private String email;
 	private String senha;
 	
+	@Enumerated(EnumType.STRING)
+	private Set<Role>roles = new HashSet<>();
+	
+	
 	@OneToOne(mappedBy = "maquinista", cascade = CascadeType.ALL)
 	private Locomotiva locomotiva;
 	
-	public Maquinista() {	
+	public Maquinista() {
+		
 	}
 
 	public Maquinista(Long id, String nome, Integer idade, Double soldo, String email) {

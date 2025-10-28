@@ -1,7 +1,5 @@
 package com.pratica.trains.dto;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import com.pratica.trains.entities.Maquinista;
 
 import jakarta.validation.constraints.NotBlank;
