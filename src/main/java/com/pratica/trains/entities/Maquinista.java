@@ -27,7 +27,7 @@ public class Maquinista {
 	private String senha;
 	
 	@Enumerated(EnumType.STRING)
-	private Set<Role>roles = new HashSet<>();
+	private String role;
 	
 	
 	@OneToOne(mappedBy = "maquinista", cascade = CascadeType.ALL)
@@ -92,5 +92,11 @@ public class Maquinista {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public String getRoles() {
+		return role;
+	}
+	
+	
 	
 }
