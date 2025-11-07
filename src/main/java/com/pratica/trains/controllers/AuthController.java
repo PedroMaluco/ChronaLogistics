@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pratica.trains.dto.AuthDTO;
+import com.pratica.trains.dto.LoginResponseDTO;
+import com.pratica.trains.entities.Maquinista;
+import com.pratica.trains.services.TokenService;
 
 import jakarta.validation.Valid;
 
@@ -18,14 +21,19 @@ import jakarta.validation.Valid;
 public class AuthController {
 	
 	@Autowired
+	private TokenService tokenService;
+	
+	@Autowired
 	private AuthenticationManager authenticationManager;
 	
 	@PostMapping(value = "/login")
 	public ResponseEntity login (@RequestBody @Valid AuthDTO dto) {
-		var userPassword = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
-		var auth = this.authenticationManager.authenticate(userPassword);
+		var usernamePassword = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
+		var auth = this.authenticationManager.authenticate(usernamePassword);
 		
-		return ResponseEntity.ok().build();
+		var token = tokenService.generateToken((Maquinista)auth.getPrincipal());
+		
+		return ResponseEntity.ok(new LoginResponseDTO(token));
 	}
 
 }
