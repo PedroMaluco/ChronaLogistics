@@ -1,12 +1,15 @@
 package com.pratica.trains.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,8 +18,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_maquinista")
-public class Maquinista {
+public class Maquinista implements UserDetails{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,8 +30,7 @@ public class Maquinista {
 	private String email;
 	private String senha;
 	
-	@Enumerated(EnumType.STRING)
-	private String role;
+	private UserRole role;
 	
 	
 	@OneToOne(mappedBy = "maquinista", cascade = CascadeType.ALL)
@@ -93,8 +96,32 @@ public class Maquinista {
 		this.senha = senha;
 	}
 
-	public String getRoles() {
+	public UserRole getRoles() {
 		return role;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if (this.role == UserRole.ENGENHEIRO_CHEFE) return List.of
+				(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_CHEFE"), new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERRNO"));
+		else {
+			return List.of(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
+		}
+			
+	}
+
+	private String role(String string) {
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
 	}
 	
 	
