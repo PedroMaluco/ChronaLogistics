@@ -1,7 +1,7 @@
 package com.pratica.trains.entities;
 
 public enum UserRole {
-	ENGENHEIRO_CHEFE("ADMIN"), ENGENHEIRO_SUBALTERNO("USER");
+	ROLE_ENGENHEIRO_CHEFE("ADMIN"), ROLE_ENGENHEIRO_SUBALTERNO("USER");
 	
 	private String role;
 	

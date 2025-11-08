@@ -1,4 +1,4 @@
-INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Krauspenhar', 26, 2750.00, 'kraus@outlook.com', '$2a$10$gmyQpHGs4o1L7zKcD1HqJ.HdRteYEz7HsTJsIPTODKbR2lNhQotte');
+INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Krauspenhar', 26, 2750.00, 'kraus@outlook.com', '$2a$10$UDL4BSdgk8lHMxXTqu.Kq.LCZGvfP0ZIQ4nuhkmDAYJlXJ5eqwsV.');
 INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Da Silva', 36, 4550.00, 'silva@yahoo.com', '$2a$10$hupyLRnVUR53UCCo0AI3ZOCN1teiSDPpULOa1EVNvbpsVsBdv9W.e');
 INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Severo', 22, 2500.00, 'saveiro@outlook.com', '$2a$10$VLzSHgWMC3fEgoAdAlraruOUT6enbH58sYGZW0m2ZuN5wCUYME40O');
 INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Padilha', 25, 2850.00, 'padilha@gmail.com', '$2a$10$KXgP85jmD7dnwV.qL5pdtu/bki3DKZb.PAq2MotJlId7HsPxl02AW');

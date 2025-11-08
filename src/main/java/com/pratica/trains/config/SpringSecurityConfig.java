@@ -27,7 +27,8 @@ public class SpringSecurityConfig {
 		.csrf(csrf -> csrf.disable())
 		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.authorizeHttpRequests(auth -> auth
-				.requestMatchers(HttpMethod.POST, "/locomotiva").hasRole("ADMIN")
+				.requestMatchers("/auth/login").permitAll()
+				.requestMatchers(HttpMethod.POST, "/locomotiva").hasRole("ENGENHEIRO_CHEFE")
 				.anyRequest().authenticated())
 		.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 		.build();

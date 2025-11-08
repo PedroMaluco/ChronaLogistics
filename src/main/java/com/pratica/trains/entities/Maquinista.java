@@ -102,8 +102,8 @@ public class Maquinista implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if (this.role == UserRole.ENGENHEIRO_CHEFE) return List.of
-				(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_CHEFE"), new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERRNO"));
+		if (this.role == UserRole.ROLE_ENGENHEIRO_CHEFE) return List.of
+				(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_CHEFE"), new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
 		else {
 			return List.of(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
 		}
