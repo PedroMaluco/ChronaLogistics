@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +32,7 @@ public class Maquinista implements UserDetails{
 	private String email;
 	private String senha;
 	
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 	
 	
@@ -40,12 +43,13 @@ public class Maquinista implements UserDetails{
 		
 	}
 
-	public Maquinista(Long id, String nome, Integer idade, Double soldo, String email) {
+	public Maquinista(Long id, String nome, Integer idade, Double soldo, String email, UserRole role) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.soldo = soldo;
 		this.email = email;
+		this.role = role;
 	}
 
 	public String getNome() {
@@ -96,8 +100,12 @@ public class Maquinista implements UserDetails{
 		this.senha = senha;
 	}
 
-	public UserRole getRoles() {
+	public UserRole getRole() {
 		return role;
+	}
+	
+	public void setRole(UserRole role) {
+	    this.role = role;
 	}
 
 	@Override
@@ -108,10 +116,6 @@ public class Maquinista implements UserDetails{
 			return List.of(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
 		}
 			
-	}
-
-	private String role(String string) {
-		return null;
 	}
 
 	@Override

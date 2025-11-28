@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.pratica.trains.dto.MaquinistaDTO;
 import com.pratica.trains.services.MaquinistaService;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 
 @RestController
@@ -51,7 +52,7 @@ public class MaquinistaController {
 		MaquinistaDTO result = maquiServ.updateMaqui(dto, id);
 		return ResponseEntity.ok(result);
 	}
-	
+	@RolesAllowed(value = "ENGENHEIRO_CHEFE")
 	@DeleteMapping(value = "/{id}")
 	private ResponseEntity<Void> deleteMaqui(@PathVariable Long id) {
 		maquiServ.deleteMaqui(id);

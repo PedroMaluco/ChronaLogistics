@@ -1,7 +1,7 @@
-INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Krauspenhar', 26, 2750.00, 'kraus@outlook.com', '$2a$10$UDL4BSdgk8lHMxXTqu.Kq.LCZGvfP0ZIQ4nuhkmDAYJlXJ5eqwsV.');
-INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Da Silva', 36, 4550.00, 'silva@yahoo.com', '$2a$10$hupyLRnVUR53UCCo0AI3ZOCN1teiSDPpULOa1EVNvbpsVsBdv9W.e');
-INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Severo', 22, 2500.00, 'saveiro@outlook.com', '$2a$10$VLzSHgWMC3fEgoAdAlraruOUT6enbH58sYGZW0m2ZuN5wCUYME40O');
-INSERT INTO tb_maquinista(nome, idade, soldo, email, senha) VALUES ('Padilha', 25, 2850.00, 'padilha@gmail.com', '$2a$10$KXgP85jmD7dnwV.qL5pdtu/bki3DKZb.PAq2MotJlId7HsPxl02AW');
+INSERT INTO tb_maquinista(nome, idade, soldo, email, senha, role) VALUES ('Krauspenhar', 26, 2750.00, 'kraus@outlook.com', '$2a$10$UDL4BSdgk8lHMxXTqu.Kq.LCZGvfP0ZIQ4nuhkmDAYJlXJ5eqwsV.', 'ROLE_ENGENHEIRO_CHEFE');
+INSERT INTO tb_maquinista(nome, idade, soldo, email, senha, role) VALUES ('Da Silva', 36, 4550.00, 'silva@yahoo.com', '$2a$10$hupyLRnVUR53UCCo0AI3ZOCN1teiSDPpULOa1EVNvbpsVsBdv9W.e', 'ROLE_ENGENHEIRO_CHEFE');
+INSERT INTO tb_maquinista(nome, idade, soldo, email, senha, role) VALUES ('Severo', 22, 2500.00, 'saveiro@outlook.com', '$2a$10$VLzSHgWMC3fEgoAdAlraruOUT6enbH58sYGZW0m2ZuN5wCUYME40O', 'ROLE_ENGENHEIRO_SUBALTERNO');
+INSERT INTO tb_maquinista(nome, idade, soldo, email, senha, role) VALUES ('Padilha', 25, 2850.00, 'padilha@gmail.com', '$2a$10$KXgP85jmD7dnwV.qL5pdtu/bki3DKZb.PAq2MotJlId7HsPxl02AW', 'ROLE_ENGENHEIRO_SUBALTERNO');
 
 INSERT INTO tb_itinerario(inicio, fim) VALUES (TIMESTAMP WITH TIME ZONE '2025-05-07T13:00:00Z', TIMESTAMP WITH TIME ZONE '2025-05-07T18:00:00Z');
 INSERT INTO tb_itinerario(inicio, fim) VALUES (TIMESTAMP WITH TIME ZONE '2025-05-09T09:00:00Z', TIMESTAMP WITH TIME ZONE '2025-05-09T15:00:00Z');

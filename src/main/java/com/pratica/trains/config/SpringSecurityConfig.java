@@ -28,7 +28,8 @@ public class SpringSecurityConfig {
 		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/auth/login").permitAll()
-				.requestMatchers(HttpMethod.POST, "/locomotiva").hasRole("ENGENHEIRO_CHEFE")
+				.requestMatchers(HttpMethod.POST, "/chronaLog").hasRole("ENGENHEIRO_CHEFE")
+				.requestMatchers(HttpMethod.PUT, "/chronaLog").hasRole("ENGENHEIRO_CHEFE")
 				.anyRequest().authenticated())
 		.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 		.build();

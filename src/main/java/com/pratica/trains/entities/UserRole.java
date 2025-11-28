@@ -1,7 +1,7 @@
 package com.pratica.trains.entities;
 
 public enum UserRole {
-	ROLE_ENGENHEIRO_CHEFE("ADMIN"), ROLE_ENGENHEIRO_SUBALTERNO("USER");
+	ROLE_ENGENHEIRO_CHEFE("ROLE_ENGENHEIRO_CHEFE"), ROLE_ENGENHEIRO_SUBALTERNO("ROLE_ENGENHEIRO_SUBALTERNO");
 	
 	private String role;
 	
@@ -9,8 +9,8 @@ public enum UserRole {
 		this.role = role;
 	}
 
-	public String getRole(String role) {
-		return role;
+	public String getRole() {
+		return this.role;
 	}
 	
 
