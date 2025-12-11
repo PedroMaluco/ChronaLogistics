@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pratica.trains.config.SecurityFilter;
 import com.pratica.trains.dto.AuthDTO;
 import com.pratica.trains.dto.LoginResponseDTO;
 import com.pratica.trains.entities.Maquinista;
 import com.pratica.trains.services.TokenService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -22,6 +24,7 @@ public class AuthController {
 	
 	@Autowired
 	private TokenService tokenService;
+	
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -34,6 +37,13 @@ public class AuthController {
 		var token = tokenService.generateToken((Maquinista)auth.getPrincipal());
 		
 		return ResponseEntity.ok(new LoginResponseDTO(token));
+	}
+	
+	@PostMapping(value = "/logout")
+	public ResponseEntity logout(HttpServletRequest request) {
+		var token = tokenService.retrieveToken(request);
+		token.replace("Authorization", "");
+		return ResponseEntity.ok(token);
 	}
 
 }

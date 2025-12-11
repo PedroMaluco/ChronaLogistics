@@ -1,5 +1,6 @@
 package com.pratica.trains.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -38,6 +40,7 @@ public class Maquinista implements UserDetails{
 	
 	@OneToOne(mappedBy = "maquinista", cascade = CascadeType.ALL)
 	private Locomotiva locomotiva;
+	
 	
 	public Maquinista() {
 		
