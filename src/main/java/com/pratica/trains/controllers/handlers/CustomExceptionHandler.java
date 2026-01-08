@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.pratica.trains.dto.CustomException;
 import com.pratica.trains.dto.ValidationError;
+import com.pratica.trains.services.exceptions.BadCredentialsException;
 import com.pratica.trains.services.exceptions.DatabaseException;
 import com.pratica.trains.services.exceptions.InvalidAcessException;
 import com.pratica.trains.services.exceptions.ObjectNotFoundException;
@@ -66,6 +67,9 @@ public class CustomExceptionHandler {
 		CustomException err = new CustomException(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);	
 	}
+	// ExpiredJwtException.class
+	// NullPointerException.class
+	
 	
 	
 

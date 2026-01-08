@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pratica.trains.token.Token;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,7 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_maquinista")
-public class Maquinista implements UserDetails{
+public class Maquinista implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -34,25 +35,34 @@ public class Maquinista implements UserDetails{
 	private String email;
 	private String senha;
 	
-	@Enumerated(EnumType.STRING)
-	private UserRole role;
-	
-	
 	@OneToOne(mappedBy = "maquinista", cascade = CascadeType.ALL)
 	private Locomotiva locomotiva;
+	
+	@OneToMany(mappedBy = "maquinista")
+	private List<Token>tokens = new ArrayList<>();
+	
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 	
 	
 	public Maquinista() {
 		
 	}
 
-	public Maquinista(Long id, String nome, Integer idade, Double soldo, String email, UserRole role) {
+	public Maquinista(Long id, String nome, Integer idade, Double soldo, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.soldo = soldo;
 		this.email = email;
-		this.role = role;
+	}
+
+	public Maquinista(Long id, String nome, Integer idade, String email, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.idade = idade;
+		this.email = email;
+		this.senha = senha;
 	}
 
 	public String getNome() {
@@ -95,30 +105,21 @@ public class Maquinista implements UserDetails{
 		this.id = id;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-	public UserRole getRole() {
-		return role;
-	}
-	
-	public void setRole(UserRole role) {
-	    this.role = role;
-	}
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if (this.role == UserRole.ROLE_ENGENHEIRO_CHEFE) return List.of
-				(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_CHEFE"), new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
-		else {
-			return List.of(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_SUBALTERNO"));
+		if (this.role == UserRole.ENGENHEIRO_CHEFE){
+			return List.of(
+					new SimpleGrantedAuthority("ROLE_ENGENHEIRO_CHEFE"), 
+					new SimpleGrantedAuthority("ROLE_ENGENHEIRO_USUARIO")
+					);
 		}
-			
+		else {
+			return List.of(new SimpleGrantedAuthority("ROLE_ENGENHEIRO_USUARIO"));
+		}
 	}
 
 	@Override
@@ -130,7 +131,16 @@ public class Maquinista implements UserDetails{
 	public String getUsername() {
 		return email;
 	}
-	
-	
-	
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public List<Token> getTokens() {
+		return tokens;
+	}
 }

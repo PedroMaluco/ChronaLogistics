@@ -17,8 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.pratica.trains.dto.VagaoDTO;
 import com.pratica.trains.services.VagaoService;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping(value = "/vagoes")
 public class VagaoController {
@@ -33,14 +31,14 @@ public class VagaoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<VagaoDTO> createVagao(@Valid @RequestBody VagaoDTO dto){
+	public ResponseEntity<VagaoDTO> createVagao(@RequestBody VagaoDTO dto){
 		VagaoDTO result = service.createVagao(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(result);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<VagaoDTO> updateVagao(@Valid @RequestBody VagaoDTO dto, @PathVariable Long id) {
+	public ResponseEntity<VagaoDTO> updateVagao(@RequestBody VagaoDTO dto, @PathVariable Long id) {
 		VagaoDTO result = service.updateVagao(dto, id);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(result);
