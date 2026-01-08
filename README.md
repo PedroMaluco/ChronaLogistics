@@ -1,0 +1,1 @@
+A premissa do projeto é estimular a prática do conhecimento estudado, partindo desde a implementação de uma estrutura básica seguindo o MVC até a parte de autenticação e segurança fazendo uso do Spring Security e validação através de tokens JWT.
